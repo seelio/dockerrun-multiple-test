@@ -2,9 +2,9 @@
   "AWSEBDockerrunVersion": 2,
   "volumes": [
     {
-      "name": "node-server",
+      "name": "node-server-src",
       "host": {
-        "sourcePath": "/opt/node-server"
+        "sourcePath": "/opt/node-server-src"
       }
     }
   ],
@@ -22,8 +22,8 @@
       ],
       "mountPoints": [
         {
-          "sourceVolume": "node-config",
-          "containerPath": "/opt/node-server"
+          "sourceVolume": "node-server-src",
+          "containerPath": "/opt/node-server-src"
         }
       ]
     }
