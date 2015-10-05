@@ -10,8 +10,9 @@
   ],
   "containerDefinitions": [
     {
-      "name": "nginx-proxy",
+      "name": "node-server",
       "image": "node:4.1",
+      "memory": 128,
       "essential": true,
       "portMappings": [
         {
