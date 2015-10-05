@@ -4,7 +4,7 @@
     {
       "name": "node-server-src",
       "host": {
-        "sourcePath": "/opt/node-server-src"
+        "sourcePath": "/var/app/current"
       }
     }
   ],
@@ -25,7 +25,8 @@
           "sourceVolume": "node-server-src",
           "containerPath": "/opt/node-server-src"
         }
-      ]
+      ],
+      "command": ['node', '/opt/node-server-src/server.js']
     }
   ]
 }
