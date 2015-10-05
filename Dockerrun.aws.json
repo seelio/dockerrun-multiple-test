@@ -1,0 +1,30 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "node-server",
+      "host": {
+        "sourcePath": "/opt/node-server"
+      }
+    }
+  ],
+  "containerDefinitions": [
+    {
+      "name": "nginx-proxy",
+      "image": "node:4.1",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 3000
+        }
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "node-config",
+          "containerPath": "/opt/node-server"
+        }
+      ]
+    }
+  ]
+}
