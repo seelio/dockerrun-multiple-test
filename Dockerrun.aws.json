@@ -2,7 +2,7 @@
   "AWSEBDockerrunVersion": 2,
   "volumes": [
     {
-      "name": "node-server-src",
+      "name": "node-src",
       "host": {
         "sourcePath": "/var/app/current"
       }
@@ -14,6 +14,22 @@
       "image": "node:4.1",
       "memory": 128,
       "essential": true,
+      "mountPoints": [
+        {
+          "sourceVolume": "node-src",
+          "containerPath": "/opt/node-src"
+        }
+      ],
+      "command": ["node", "/opt/node-src/server.js"]
+    },
+    {
+      "name": "node-proxy",
+      "image": "node:4.1",
+      "memory": 128,
+      "essential": true,
+      "links": [
+        "node-server"
+      ],
       "portMappings": [
         {
           "hostPort": 80,
@@ -22,11 +38,11 @@
       ],
       "mountPoints": [
         {
-          "sourceVolume": "node-server-src",
-          "containerPath": "/opt/node-server-src"
+          "sourceVolume": "node-src",
+          "containerPath": "/opt/node-src"
         }
       ],
-      "command": ["node", "/opt/node-server-src/server.js"]
+      "command": ["node", "/opt/node-src/proxy.js"]
     }
   ]
 }
